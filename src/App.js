@@ -10,6 +10,8 @@ import Map from './Map';
 import Table from './Table';
 //importacion de promesa de sorteo mayor a menor
 import { sortData } from './util';
+//importacion de grafica
+import LineGraph from './LineGraph';
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -122,8 +124,10 @@ function App() {
           {/**Table */}
           <Table countries={tableData} />
 
-          <h3>Wordwide new cases</h3>
           {/**Graph */}
+          <h3>Wordwide new cases</h3>
+          <LineGraph />
+
         </CardContent>
       </Card>
     </div>
