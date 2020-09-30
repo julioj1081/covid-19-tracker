@@ -1,10 +1,16 @@
 *{
   margin: 0;
 }
-
+body{
+  background-color: #ececec !important;
+}
+.app{
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
 .app__header{
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
@@ -19,4 +25,21 @@
 .flag{
   width: 20px;
   height: 20px;
+}
+
+/*contenido de cajas casos*/
+.app__left{
+  flex: 0.9;
+}
+.app__stats{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/*media*/
+@media (max-width:990px){
+  .app{
+    flex-direction: column;
+  }
 }
