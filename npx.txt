@@ -1,0 +1,6 @@
+//CREACION DE APP
+npx create-react-app covid-19-tracker
+
+//MATERIAL-UI/CORE
+npm install @material-ui/core
+
