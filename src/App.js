@@ -8,6 +8,8 @@ import InfoBox from './infoBox';
 import Map from './Map';
 //importacion de tabla
 import Table from './Table';
+//importacion de promesa de sorteo mayor a menor
+import { sortData } from './util';
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -16,14 +18,14 @@ function App() {
   //tabla
   const [tableData, setTableData] = useState([]);
   //informacion del countryInfo 
-  const [countryInfo, setCountryInfo ] = useState({});
+  const [countryInfo, setCountryInfo] = useState({});
   //muestra todos
-  useEffect(() =>{
+  useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
-    .then(response => response.json())
-    .then(data => {
-      setCountryInfo(data);
-    })
+      .then(response => response.json())
+      .then(data => {
+        setCountryInfo(data);
+      })
   }, [])
 
   //https://disease.sh/v3/covid-19/all
@@ -44,8 +46,10 @@ function App() {
               flag: country.countryInfo.flag
             }
           ));
-          //tablas
-          setTableData(data);
+          //promesa para sorteo para de mayor a menor
+          const sortedData = sortData(data);
+          //tablas //(data)
+          setTableData(sortedData);
           //asignacion de country
           setCountries(countries);
         });
@@ -59,19 +63,19 @@ function App() {
     //console.log("tu pais => ", countryCode);
     setCountry(countryCode);
 
-     //https://disease.sh/v3/covid-19/countries/[country]
+    //https://disease.sh/v3/covid-19/countries/[country]
     //
-    const url = countryCode === 'worldwide' 
-    ? 'https://disease.sh/v3/covid-19/countries/all' 
-    : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
+    const url = countryCode === 'worldwide'
+      ? 'https://disease.sh/v3/covid-19/countries/all'
+      : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
     await fetch(url)
-    .then(response => response.json())
-    .then(data => {
+      .then(response => response.json())
+      .then(data => {
 
-      setCountry(countryCode);
-      //all of the data from the country
-      setCountryInfo(data);
-    })
+        setCountry(countryCode);
+        //all of the data from the country
+        setCountryInfo(data);
+      })
   };
 
   //console.log("country info => ", countryInfo);
@@ -102,8 +106,8 @@ function App() {
         <div className="app__stats">
           {/* <InfoBox title="Deaths" cases={1234} total={4000} />
            */
-           }
-           <InfoBox title="Coronavirus Cases" cases={countryInfo.todayCases} total={countryInfo.cases} /> <hr></hr>
+          }
+          <InfoBox title="Coronavirus Cases" cases={countryInfo.todayCases} total={countryInfo.cases} /> <hr></hr>
           <InfoBox title="Recovered" cases={countryInfo.todayRecovered} total={countryInfo.recovered} />
           <InfoBox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
         </div>
@@ -114,10 +118,10 @@ function App() {
       <Card className="app__right">
         <CardContent>
           <h3>Live Cases by country</h3>
-          
+
           {/**Table */}
           <Table countries={tableData} />
-          
+
           <h3>Wordwide new cases</h3>
           {/**Graph */}
         </CardContent>
