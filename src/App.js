@@ -6,11 +6,25 @@ import { MenuItem, FormControl, Select, Card, CardContent } from '@material-ui/c
 import InfoBox from './infoBox';
 //importacion de map
 import Map from './Map';
+//importacion de tabla
+import Table from './Table';
 
 function App() {
   const [countries, setCountries] = useState([]);
-  //selec
+  //select combobox
   const [country, setCountry] = useState('worldwide');
+  //tabla
+  const [tableData, setTableData] = useState([]);
+  //informacion del countryInfo 
+  const [countryInfo, setCountryInfo ] = useState({});
+  //muestra todos
+  useEffect(() =>{
+    fetch("https://disease.sh/v3/covid-19/all")
+    .then(response => response.json())
+    .then(data => {
+      setCountryInfo(data);
+    })
+  }, [])
 
   //https://disease.sh/v3/covid-19/all
   //https://disease.sh/v3/covid-19/countries
@@ -30,6 +44,9 @@ function App() {
               flag: country.countryInfo.flag
             }
           ));
+          //tablas
+          setTableData(data);
+          //asignacion de country
           setCountries(countries);
         });
     };
@@ -37,11 +54,27 @@ function App() {
   }, []);
 
   //para cambiar
-  const onCountryChange = (event) => {
+  const onCountryChange = async (event) => {
     const countryCode = event.target.value;
     //console.log("tu pais => ", countryCode);
     setCountry(countryCode);
-  }
+
+     //https://disease.sh/v3/covid-19/countries/[country]
+    //
+    const url = countryCode === 'worldwide' 
+    ? 'https://disease.sh/v3/covid-19/countries/all' 
+    : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
+    await fetch(url)
+    .then(response => response.json())
+    .then(data => {
+
+      setCountry(countryCode);
+      //all of the data from the country
+      setCountryInfo(data);
+    })
+  };
+
+  //console.log("country info => ", countryInfo);
 
   return (
     <div className="app">
@@ -67,9 +100,12 @@ function App() {
         <hr></hr>
         {/*INFO BOXS*/}
         <div className="app__stats">
-          <InfoBox title="Coronavirus Cases" cases={1234} total={2000} /> <hr></hr>
-          <InfoBox title="Recovered" cases={123456} total={3000} />
-          <InfoBox title="Deaths" cases={1234} total={4000} />
+          {/* <InfoBox title="Deaths" cases={1234} total={4000} />
+           */
+           }
+           <InfoBox title="Coronavirus Cases" cases={countryInfo.todayCases} total={countryInfo.cases} /> <hr></hr>
+          <InfoBox title="Recovered" cases={countryInfo.todayRecovered} total={countryInfo.recovered} />
+          <InfoBox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
         </div>
 
         {/**Map */}
@@ -78,7 +114,10 @@ function App() {
       <Card className="app__right">
         <CardContent>
           <h3>Live Cases by country</h3>
+          
           {/**Table */}
+          <Table countries={tableData} />
+          
           <h3>Wordwide new cases</h3>
           {/**Graph */}
         </CardContent>
