@@ -7,7 +7,6 @@ body{
 .app{
   display: flex;
   justify-content: space-evenly;
-  background-color: #f5f6fa;
   padding: 20px;
 }
 .app__header{
@@ -34,8 +33,7 @@ body{
 }
 .app__stats{
   display: flex;
-  margin: 1rem;
-  /* justify-content: space-between; */
+  justify-content: space-between;
 }
 
 

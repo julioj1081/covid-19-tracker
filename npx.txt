@@ -12,3 +12,4 @@ npm i numeral
 
 //Mapas
 npm i react-leaflet
+npm install react-leaflet

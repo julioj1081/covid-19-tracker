@@ -12,6 +12,7 @@ import Table from './Table';
 import { sortData } from './util';
 //importacion de grafica
 import LineGraph from './LineGraph';
+import "leaflet/dist/leaflet.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -20,9 +21,8 @@ function App() {
   //tabla
   const [tableData, setTableData] = useState([]);
   //mapas
-  const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
-  const [mapZoom, setMapZoom] = useState(3);
-
+  const [mapCenter, setMapCenter] = useState({lat: 34.80746, lng: -40.4796}); 
+  const[mapZoom, setMapZoom] = useState(3);
   //informacion del countryInfo 
   const [countryInfo, setCountryInfo] = useState({});
   //muestra todos
@@ -121,10 +121,8 @@ function App() {
         {/**Map */}
         <Map 
         center={mapCenter}
-        zoom={mapZoom}
-        />
+        zoom={mapZoom}/>
       </div>
-      
       <Card className="app__right">
         <CardContent>
           <h3>Live Cases by country</h3>
