@@ -5,6 +5,10 @@ npx create-react-app covid-19-tracker
 npm install @material-ui/core
 
 
-//react chartjs 2
+//react chartjs 2  y tooltips
 npm install --save react-chartjs-2 chart.js
 npm i react-chartjs-2 chart.js
+npm i numeral
+
+//Mapas
+npm i react-leaflet
