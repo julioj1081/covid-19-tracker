@@ -25,6 +25,9 @@ function App() {
   const[mapZoom, setMapZoom] = useState(3);
   const [mapCountries, setMapCountries] = useState([]);
 
+  //casos tipos
+  const [casesType, setCasesType] = useState("cases");
+
   //informacion del countryInfo 
   const [countryInfo, setCountryInfo] = useState({});
   //muestra todos
@@ -127,13 +130,14 @@ function App() {
             <InfoBox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
            */
           }
-          <InfoBox title="Coronavirus Cases" cases={prettyPrintStat(countryInfo.todayCases)} total={countryInfo.cases} /> <hr></hr>
-          <InfoBox title="Recovered" cases={prettyPrintStat(countryInfo.todayRecovered)} total={countryInfo.recovered} />
-          <InfoBox title="Deaths" cases={prettyPrintStat(countryInfo.todayDeaths)} total={countryInfo.deaths} />
+          <InfoBox onClick={e => setCasesType("cases")} title="Coronavirus Cases" cases={prettyPrintStat(countryInfo.todayCases)} total={countryInfo.cases} /> <hr></hr>
+          <InfoBox onClick={e => setCasesType("recovered")} title="Recovered" cases={prettyPrintStat(countryInfo.todayRecovered)} total={countryInfo.recovered} />
+          <InfoBox onClick={e => setCasesType("deaths")} title="Deaths" cases={prettyPrintStat(countryInfo.todayDeaths)} total={countryInfo.deaths} />
         </div>
 
         {/**Map */}
         <Map 
+        casesType={casesType}
         countries={mapCountries}
         center={mapCenter}
         zoom={mapZoom}/>
