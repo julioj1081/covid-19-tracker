@@ -38,6 +38,9 @@ const casesTypeColors = {
     },
 };
 
+export const prettyPrintStat = (stat) =>
+  stat ? `+${numeral(stat).format("0.0a")}` : "+0";
+
 //dibujos de circulos en el mapa y pops al dar click
 export const showDataOnMap = (data, casesType = "cases") => (
     data.map(country => (

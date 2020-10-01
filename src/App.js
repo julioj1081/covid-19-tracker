@@ -9,7 +9,7 @@ import Map from './Map';
 //importacion de tabla
 import Table from './Table';
 //importacion de promesa de sorteo mayor a menor
-import { sortData } from './util';
+import { sortData, prettyPrintStat } from './util';
 //importacion de grafica
 import LineGraph from './LineGraph';
 import "leaflet/dist/leaflet.css";
@@ -124,11 +124,12 @@ function App() {
         {/*INFO BOXS*/}
         <div className="app__stats">
           {/* <InfoBox title="Deaths" cases={1234} total={4000} />
+            <InfoBox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
            */
           }
-          <InfoBox title="Coronavirus Cases" cases={countryInfo.todayCases} total={countryInfo.cases} /> <hr></hr>
-          <InfoBox title="Recovered" cases={countryInfo.todayRecovered} total={countryInfo.recovered} />
-          <InfoBox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
+          <InfoBox title="Coronavirus Cases" cases={prettyPrintStat(countryInfo.todayCases)} total={countryInfo.cases} /> <hr></hr>
+          <InfoBox title="Recovered" cases={prettyPrintStat(countryInfo.todayRecovered)} total={countryInfo.recovered} />
+          <InfoBox title="Deaths" cases={prettyPrintStat(countryInfo.todayDeaths)} total={countryInfo.deaths} />
         </div>
 
         {/**Map */}
