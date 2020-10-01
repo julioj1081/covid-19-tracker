@@ -23,6 +23,8 @@ function App() {
   //mapas
   const [mapCenter, setMapCenter] = useState({lat: 34.80746, lng: -40.4796}); 
   const[mapZoom, setMapZoom] = useState(3);
+  const [mapCountries, setMapCountries] = useState([]);
+
   //informacion del countryInfo 
   const [countryInfo, setCountryInfo] = useState({});
   //muestra todos
@@ -31,6 +33,8 @@ function App() {
       .then(response => response.json())
       .then(data => {
         setCountryInfo(data);
+        
+
       })
   }, [])
 
@@ -58,6 +62,9 @@ function App() {
           setTableData(sortedData);
           //asignacion de country
           setCountries(countries);
+
+          //para el mapa
+          setMapCountries(data);
         });
     };
     getCountriesData();
@@ -80,9 +87,15 @@ function App() {
 
         setCountry(countryCode);
         //all of the data from the country
-        setCountryInfo(data);
-      })
-  };
+        setCountryInfo(data); //toda la informacion del pais
+
+        //al momento de elejir el pais cambiara el mapa y el zoom
+        //console.log("cord => lat: ",data.countryInfo.lat, " cord => long: ", data.countryInfo.long);
+        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+        setMapZoom(4);
+
+      });
+  }
 
   //console.log("country info => ", countryInfo);
 
@@ -120,6 +133,7 @@ function App() {
 
         {/**Map */}
         <Map 
+        countries={mapCountries}
         center={mapCenter}
         zoom={mapZoom}/>
       </div>
