@@ -15,7 +15,16 @@ body{
   align-items: center;
   margin-bottom: 20px;
 }
-
+/*titulo api*/
+.app__header > h1{
+  color: black;
+  font-size: 2rem;
+}
+/*barra de paises*/
+.app_dropdown{
+  background-color: white;
+  width: auto;
+}
 .MuiButtonBase-root, .MuiListItem-root, .MuiMenuItem-root, .MuiMenuItem-gutters, .MuiListItem-gutters, .MuiListItem-button{
   display: flex !important;
   align-items: center !important;
@@ -36,6 +45,17 @@ body{
   justify-content: space-between;
 }
 
+
+/*contenido de slider*/
+.app__right{
+  display: flex;
+  flex-direction: column;
+}
+.app__right .muiCardContent-root{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
 
 /*media*/
 @media (max-width:990px){

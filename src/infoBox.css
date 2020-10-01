@@ -1,5 +1,6 @@
 .infoBox{
     flex: 1;
+    cursor: pointer;
 }
 .infoBox:not(:last-child){
     margin-right: 10px;
@@ -17,4 +18,14 @@
     font-weight: 700 !important;
     font-size: 0.8rem !important;
     margin-top: 15px !important;
+}
+/*barra verde al cambiar de casos*/
+.infoBox--selected{
+    border-top: 5px solid greenyellow;
+}
+.infoBox--red{
+    border-color: crimson !important;
+}
+.infoBox__cases--green{
+    color: lightgreen !important;
 }

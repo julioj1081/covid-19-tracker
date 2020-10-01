@@ -95,7 +95,7 @@ function App() {
         //al momento de elejir el pais cambiara el mapa y el zoom
         //console.log("cord => lat: ",data.countryInfo.lat, " cord => long: ", data.countryInfo.long);
         setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-        setMapZoom(4);
+        setMapZoom(5);
 
       });
   }
@@ -130,9 +130,9 @@ function App() {
             <InfoBox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
            */
           }
-          <InfoBox onClick={e => setCasesType("cases")} title="Coronavirus Cases" cases={prettyPrintStat(countryInfo.todayCases)} total={countryInfo.cases} /> <hr></hr>
-          <InfoBox onClick={e => setCasesType("recovered")} title="Recovered" cases={prettyPrintStat(countryInfo.todayRecovered)} total={countryInfo.recovered} />
-          <InfoBox onClick={e => setCasesType("deaths")} title="Deaths" cases={prettyPrintStat(countryInfo.todayDeaths)} total={countryInfo.deaths} />
+          <InfoBox isRed active={casesType==="cases"} onClick={(e) => setCasesType("cases")} title="Coronavirus Cases" cases={prettyPrintStat(countryInfo.todayCases)} total={countryInfo.cases} /> <hr></hr>
+          <InfoBox  active={casesType==="recovered"} onClick={(e) => setCasesType("recovered")} title="Recovered" cases={prettyPrintStat(countryInfo.todayRecovered)} total={countryInfo.recovered} />
+          <InfoBox isRed active={casesType==="deaths"} onClick={(e) => setCasesType("deaths")} title="Deaths" cases={prettyPrintStat(countryInfo.todayDeaths)} total={countryInfo.deaths} />
         </div>
 
         {/**Map */}
@@ -150,8 +150,9 @@ function App() {
           <Table countries={tableData} />
 
           {/**Graph */}
-          <h3>Wordwide new cases</h3>
-          <LineGraph />
+        <h3>Wordwide new {casesType}</h3>
+        {/*Dependiendo de cada caso cambia la grafica */}
+          <LineGraph casesType={casesType}/>
 
         </CardContent>
       </Card>

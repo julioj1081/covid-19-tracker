@@ -37,7 +37,7 @@ const casesTypeColors = {
         multiplier: 2000,
     },
 };
-
+//esto nos permitira en las cards +2.5k en 
 export const prettyPrintStat = (stat) =>
   stat ? `+${numeral(stat).format("0.0a")}` : "+0";
 
