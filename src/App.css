@@ -51,10 +51,17 @@ body{
   display: flex;
   flex-direction: column;
 }
-.app__right .muiCardContent-root{
+.app__right .MuiCardContent-root{
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+}
+/*grafica*/
+.app__graph{
+  flex-grow: 1;
+}
+.app_graphTitle{
+  margin:20px 0px 20px 0px;
 }
 
 /*media*/

@@ -150,9 +150,9 @@ function App() {
           <Table countries={tableData} />
 
           {/**Graph */}
-        <h3>Wordwide new {casesType}</h3>
+        <h3 className="app_graphTitle">Wordwide new {casesType}</h3>
         {/*Dependiendo de cada caso cambia la grafica */}
-          <LineGraph casesType={casesType}/>
+          <LineGraph className="app__graph" casesType={casesType}/>
 
         </CardContent>
       </Card>
