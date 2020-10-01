@@ -56,12 +56,19 @@ body{
   flex-direction: column;
   flex-grow: 1;
 }
+.MuiCardContent-root:nth-child(2){
+  display: flex !important;
+  flex-direction: column !important;
+  flex-grow: 1 !important;
+}
 /*grafica*/
 .app__graph{
   flex-grow: 1;
+  width: 400px;
+  height: 200px;
 }
 .app_graphTitle{
-  margin:20px 0px 20px 0px;
+  margin:20px 0px 20px;
 }
 
 /*media*/
